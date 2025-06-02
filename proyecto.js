@@ -184,10 +184,23 @@ do {
 
             console.log("---------Estudiantes con entregas completas---------");
             filtrarCompletos(estudiantes)
-            
             break;
         case 4:
 
+            console.log("--------------Lista de estudiantes---------------");
+            
+            for(i = 0; i < estudiantes.length; i++) {
+                console.log("Estudiante #", i+1, estudiantes[i].nombre, ", codigo: ",estudiantes[i].codigo);
+            }
+            let codigoEstudiante = parseInt(prompt("Ingresa el codigo del estudiante a revisar:    "))
+
+            let estuSeleccionado = estudiantes.filter(estudiante => estudiante.codigo === codigoEstudiante )
+
+            console.log(estuSeleccionado);
+            break;
+
+        case 5:
+            break;
         case 6:
             salir = true
             break;
