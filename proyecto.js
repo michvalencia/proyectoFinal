@@ -145,7 +145,24 @@ do {
 
         case 2: //FILTRAR ESTUDIANTES CRITICOS
 
-           
+            const filtrarCriticos = (estudiantes) => {
+                let estuCriticos = []
+
+                for(i = 0; i < estudiantes.length; i++){
+                    if(estudiantes[i].estado === "critico"){
+                        estuCriticos.push({
+                            nombre: estudiantes[i].nombre,
+                            codigo: estudiantes[i].codigo,
+                            estado: estudiantes[i].estado
+                        })
+                    }
+                }
+                return estuCriticos
+            }
+
+            console.log("---------Estudiantes en estado critico---------");
+            console.log(filtrarCriticos(estudiantes));
+            
             break;
         case 3: //ESTUDIANTES CON ENTREGAS COMPLETAS
            
