@@ -162,10 +162,29 @@ do {
 
             console.log("---------Estudiantes en estado critico---------");
             console.log(filtrarCriticos(estudiantes));
-            
+
             break;
         case 3: //ESTUDIANTES CON ENTREGAS COMPLETAS
            
+            const filtrarCompletos = (estudiantes) => {
+                let estuCompletos = []
+
+                for(i = 0; i < estudiantes.length; i++){
+                    if(estudiantes[i].entregas === 100){
+                        estuCompletos.push({
+                            nombre: estudiantes[i].nombre,
+                            codigo: estudiantes[i].codigo,
+                            porcentajeDeEntrega: estudiantes[i].entregas
+                        })
+                    }
+                }
+                console.log("Los estudiantes con notas completas son: ", estuCompletos.length);
+                console.log(estuCompletos);
+            }
+
+            console.log("---------Estudiantes con entregas completas---------");
+            filtrarCompletos(estudiantes)
+            
             break;
         case 4:
 
