@@ -162,10 +162,9 @@ do {
 
             console.log("---------Estudiantes en estado critico---------");
             console.log(filtrarCriticos(estudiantes));
-
+            
             break;
         case 3: //ESTUDIANTES CON ENTREGAS COMPLETAS
-           
             const filtrarCompletos = (estudiantes) => {
                 let estuCompletos = []
 
@@ -185,7 +184,8 @@ do {
             console.log("---------Estudiantes con entregas completas---------");
             filtrarCompletos(estudiantes)
             break;
-        case 4:
+
+        case 4: //CONSULTAR ESTUDIANTES POR SEPARADO
 
             console.log("--------------Lista de estudiantes---------------");
             
@@ -197,9 +197,62 @@ do {
             let estuSeleccionado = estudiantes.filter(estudiante => estudiante.codigo === codigoEstudiante )
 
             console.log(estuSeleccionado);
+            
             break;
 
-        case 5:
+        case 5: //INFORME GENERAL   
+            console.log("----Cantidad de estudiantes por estado academico------");
+
+            let estudiantesCriticos = estudiantes.filter(estudiante => estudiante.estado === "critico")
+            let estudiantesAceptables = estudiantes.filter(estudiante => estudiante.estado === "aceptable")
+            let estudiantesExcelentes = estudiantes.filter(estudiante => estudiante.estado === "excelente")
+
+            console.log("Estudiantes excelentes: ", estudiantesExcelentes.length);
+            console.log("Estudiantes aceptables: ", estudiantesAceptables.length);
+            console.log("Estudiantes criticos: ", estudiantesCriticos.length);
+            
+            console.log("------Promedio general de cada grupo------");
+
+            let grupoA = estudiantes.filter(estudiante => estudiante.grupo === 'A')
+            let grupoB = estudiantes.filter(estudiante => estudiante.grupo === 'B')
+            
+            const calcPromedio = (grupo) => {
+                let suma = 0
+                for(i=0; i < grupo.length; i++){
+                    suma = suma + grupo[i].promedioNotas
+                }
+                prom = suma / grupo.length
+                return prom
+            }
+
+            console.log("Promedio grupo A: ", calcPromedio(grupoA));
+            console.log("Promedio grupo B: ", calcPromedio(grupoB));
+            
+            console.log("-----Porcentaje de estudiantes que requieren intervención-----");
+            
+            let criticos = estudiantes.filter(estudiante => estudiante.estado === "critico")
+
+            let porcentajeCriticos = (criticos.length/estudiantes.length)*100
+            console.log("Porcentaje de estudiantes a intervenir : ", porcentajeCriticos,"%");
+            
+            console.log("-----Listado estudiantes con bajas entregas-----");
+
+           let bajasEntregas = []
+
+           for(i = 0; i < estudiantes.length; i++){
+            if(estudiantes[i].entregas < 30){
+                bajasEntregas.push({
+                    nombre: estudiantes[i].nombre,
+                    codigo: estudiantes[i].codigo,
+                    grupo: estudiantes[i].grupo,
+                    promedioNotas: estudiantes[i].promedioNotas,
+                    asistencia: estudiantes[i].asistencia,
+                    entregas: estudiantes[i].entregas,
+                })
+            }
+           }
+
+           console.log(bajasEntregas);
             break;
         case 6:
             salir = true
